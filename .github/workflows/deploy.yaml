@@ -25,4 +25,4 @@ jobs:
       - name: Deploy site/ to the server
         run: |
           rsync -avz --delete \
-            site/ deploy@${{ secrets.HOST }}:/var/www/yourdomain.dev/
+            site/ deploy@${{ secrets.HOST }}:/var/www/radsum.dev/
