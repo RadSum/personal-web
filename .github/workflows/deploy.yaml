@@ -1,5 +1,9 @@
 name: Deploy
 
+permissions:
+  contents: read
+  id-token: write
+
 on:
   push:
     branches: [main]
@@ -14,6 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          audience: ${{ secrets.TS_AUDIENCE }}
+          tags: tag:ci
+
             
       - name: Set up SSH
         run: |
